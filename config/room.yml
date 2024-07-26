@@ -1,0 +1,42 @@
+device:
+  ID: "RoomAgent"
+  Type: "Lights and AC"
+  BeaconRate: 20
+  nSensors: 2
+  nActuators: 2
+
+sensors:
+  - ID: "RoomLuminositySensor"
+    Type: "Luminosity"
+    Status: 20
+    MinValue: 0
+    MaxValue: 100
+    Virtual:
+      GradientChange: false
+      Factor: 20
+      ActuatorGetInfo:
+        Object: 3
+        Index: 1
+  - ID: "RoomTemperatureSensor"
+    Type: "Temperature"
+    Status: 25
+    MinValue: -10
+    MaxValue: 
+    Virtual:
+      GradientChange: true
+      Factor: 1
+      ActuatorGetInfo:
+        Object: 3
+        Index: 2
+
+actuators:
+  - ID: "RoomLightActuator"
+    Type: "Light"
+    Status: 1
+    MinValue: 0
+    MaxValue: 5
+  - ID: "RoomACActuator"
+    Type: "AC"
+    Status: 22
+    MinValue: 0
+    MaxValue: 60

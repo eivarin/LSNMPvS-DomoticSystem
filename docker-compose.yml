@@ -1,0 +1,38 @@
+services:
+  manager:
+    build: 
+      context: .
+      dockerfile: ./Manager.Dockerfile
+    container_name: manager
+    volumes:
+      - ./config/manager.yml:/app/config.yml
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
+    networks:
+      - LSNMPNet
+  kitchen-agent:
+    build: 
+      context: .
+      dockerfile: ./Agent.Dockerfile
+    container_name: kitchen-agent
+    volumes:
+      - ./config/kitchen.yml:/app/config.yml
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
+    networks:
+      - LSNMPNet
+  room-agent:
+    build: 
+      context: .
+      dockerfile: ./Agent.Dockerfile
+    container_name: room-agent
+    volumes:
+      - ./config/room.yml:/app/config.yml
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
+    networks:
+      - LSNMPNet
+
+networks:
+  LSNMPNet:
+    driver: bridge
